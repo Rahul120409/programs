@@ -1,3 +1,133 @@
+Restoring 😊😊😊😊😊😊😊 
+
+#include <stdio.h>
+
+void binary(int x, int bits) {
+    int i;
+
+    if (x < 0)
+        x = (1U << bits) + x;
+
+    for (i = bits - 1; i >= 0; i--)
+        printf("%d", (x >> i) & 1);
+}
+
+int main() {
+    int dividend, divisor;
+    int A = 0, M, Q;
+    int n, count, q_msb;
+
+    printf("Enter Dividend: ");
+    scanf("%d", &dividend);
+
+    printf("Enter Divisor: ");
+    scanf("%d", &divisor);
+
+    if (dividend < 0 || divisor < 0) {
+        printf("Please enter non-negative integers.\n");
+        return 1;
+    }
+
+    if (divisor == 0) {
+        printf("Division by zero is not possible.\n");
+        return 1;
+    }
+
+    /* Find number of bits in dividend */
+    n = 0;
+    {
+        int temp = dividend;
+
+        while (temp > 0) {
+            n++;
+            temp /= 2;
+        }
+    }
+
+    if (n == 0)
+        n = 1;
+
+    M = divisor;
+    Q = dividend;
+    count = n;
+
+    printf("\n===== RESTORING DIVISION =====\n");
+
+    printf("\nInitial Values:");
+    printf("\nA = ");
+    binary(A, n + 1);
+    printf("\nM = ");
+    binary(M, n + 1);
+    printf("\nQ = ");
+    binary(Q, n);
+    printf("\nCount = %d\n", count);
+
+    while (count > 0) {
+        printf("\n------------------------------");
+        printf("\nIteration %d", n - count + 1);
+        printf("\n------------------------------");
+
+        /* Step 1: Shift left A and Q */
+        q_msb = (Q >> (n - 1)) & 1;
+        A = (A << 1) | q_msb;
+        Q = (Q << 1) & ((1U << n) - 1);
+
+        printf("\n\n1. Shift left A,Q");
+        printf("\nA = ");
+        binary(A, n + 1);
+        printf("\nQ = ");
+        binary(Q, n);
+
+        /* Step 2: A = A - M */
+        A = A - M;
+
+        printf("\n\n2. A = A - M");
+        printf("\nA = ");
+        binary(A, n + 1);
+
+        /* Step 3: Check whether A is negative */
+        if (A < 0) {
+            printf("\n\n3. A < 0: Restore A");
+
+            A = A + M;
+
+            printf("\nA = ");
+            binary(A, n + 1);
+
+            Q = Q & ~1;
+            printf("\nQ0 = 0");
+        } else {
+            printf("\n\n3. A >= 0");
+
+            Q = Q | 1;
+            printf("\nQ0 = 1");
+        }
+
+        printf("\nQ = ");
+        binary(Q, n);
+
+        /* Step 4: Decrement count */
+        count--;
+
+        printf("\n\n4. Count = %d", count);
+    }
+
+    printf("\n\n===== FINAL RESULT =====");
+
+    printf("\nQuotient (Q) = ");
+    binary(Q, n);
+
+    printf("\nRemainder (A) = ");
+    binary(A, n + 1);
+
+    printf("\nDecimal Quotient = %d", Q);
+    printf("\nDecimal Remainder = %d\n", A);
+
+    return 0;
+}
+
+Non restoing 😊😊😊😊😊😊😊
+
 binary to decimal
 
 #include <stdio.h>
@@ -21,6 +151,140 @@ Return 0;
 
 }
 
+Non restroing 
+
+#include <stdio.h>
+
+void binary(int x, int bits) {
+    unsigned int value = (unsigned int)x;
+
+    for (int i = bits - 1; i >= 0; i--) {
+        printf("%d", (value >> i) & 1U);
+    }
+}
+
+int main() {
+    int dividend, divisor;
+    int A = 0, M, Q;
+    int n, count, q_msb;
+
+    printf("Enter Dividend: ");
+    scanf("%d", &dividend);
+
+    printf("Enter Divisor: ");
+    scanf("%d", &divisor);
+
+    if (dividend < 0 || divisor < 0) {
+        printf("Please enter non-negative integers.\n");
+        return 1;
+    }
+
+    if (divisor == 0) {
+        printf("Division by zero is not possible.\n");
+        return 1;
+    }
+
+    /* Find number of bits in dividend */
+    n = 0;
+    {
+        int temp = dividend;
+
+        while (temp > 0) {
+            n++;
+            temp /= 2;
+        }
+    }
+
+    if (n == 0)
+        n = 1;
+
+    M = divisor;
+    Q = dividend;
+    count = n;
+
+    printf("\n===== NON-RESTORING DIVISION =====\n");
+
+    printf("\nInitial Values:");
+    printf("\nA = ");
+    binary(A, n + 1);
+
+    printf("\nM = ");
+    binary(M, n + 1);
+
+    printf("\nQ = ");
+    binary(Q, n);
+
+    printf("\nCount = %d\n", count);
+
+    /* Main iterations */
+    while (count > 0) {
+        printf("\n------------------------------");
+        printf("\nIteration %d", n - count + 1);
+        printf("\n------------------------------");
+
+        /* Step 1: Shift left A and Q */
+        q_msb = (Q >> (n - 1)) & 1;
+        A = (A << 1) | q_msb;
+        Q = (Q << 1) & ((1U << n) - 1);
+
+        printf("\n\n1. Shift Left A,Q");
+        printf("\nA = ");
+        binary(A, n + 1);
+
+        printf("\nQ = ");
+        binary(Q, n);
+
+        /* Step 2: Add or subtract M */
+        if (A >= 0) {
+            A = A - M;
+            printf("\n\n2. A >= 0: A = A - M");
+        } else {
+            A = A + M;
+            printf("\n\n2. A < 0: A = A + M");
+        }
+
+        printf("\nA = ");
+        binary(A, n + 1);
+
+        /* Step 3: Set the least significant bit of Q */
+        if (A >= 0) {
+            Q = Q | 1;
+            printf("\n\n3. A >= 0: Q0 = 1");
+        } else {
+            Q = Q & ~1;
+            printf("\n\n3. A < 0: Q0 = 0");
+        }
+
+        printf("\nQ = ");
+        binary(Q, n);
+
+        count--;
+
+        printf("\n\n4. Count = %d", count);
+    }
+
+    /* Final correction */
+    if (A < 0) {
+        printf("\n\nFinal Correction: A = A + M");
+        A = A + M;
+
+        printf("\nA = ");
+        binary(A, n + 1);
+    }
+
+    printf("\n\n===== FINAL RESULT =====");
+
+    printf("\nQuotient (Q) = ");
+    binary(Q, n);
+
+    printf("\nRemainder (A) = ");
+    binary(A, n + 1);
+
+    printf("\nDecimal Quotient = %d", Q);
+    printf("\nDecimal Remainder = %d\n", A);
+
+    return 0;
+}
 
 
 
@@ -28,7 +292,7 @@ Return 0;
 
 
 
-octal to binary
+octal to binary 😊😊😊😊😊😊😊
 EXP 1.2
 
 #include <stdio.h>
@@ -120,7 +384,7 @@ int main(){
 
 
 
-addition of hexadecimal
+addition of hexadecimal 😊😊😊😊😊😊😊
 
 Exp 4.1
 #include <stdio.h>
@@ -151,7 +415,7 @@ int main(){
 
 
 
-addition of binary
+addition of binary 😊😊😊😊😊😊😊
 
 Exp 4.2
 #include <stdio.h>
@@ -183,7 +447,7 @@ int main(){
 }
 
 
-basic programs ALU
+basic programs ALU 😊😊😊😊😊😊😊
 EXP 7
 Addition:-
 A: DB 0x03
@@ -214,7 +478,7 @@ MOV word[DI], AX
 
 
 
-
+ 
 MULTIPLICATION 
 
 A: DB 0x05
@@ -247,7 +511,7 @@ MOV word[DI],DX
 
 
 
-Largest and smallest 
+Largest and smallest  😊😊😊😊😊😊😊
 EXP 8 
 
 DATA: 	DW 0
@@ -291,7 +555,7 @@ MOV word[DI], DX
 
 
 
-Pipepline phase
+Pipepline phase 😊😊😊😊😊😊😊
 
 Exp 10
 
@@ -323,7 +587,7 @@ return 0;
 } 
 
 
-signed and unsigned numbers 
+signed and unsigned numbers  😊😊😊😊😊😊😊
 #include <stdio.h>
 
 int main(){
