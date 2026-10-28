@@ -1,0 +1,392 @@
+binary to decimal
+
+#include <stdio.h>
+Int main(){
+	Long long binary;
+	Int digit;
+	Int decimal=0;
+	Int base=1;
+	
+	Printf(“Enter Binary:”);
+	Scanf(“%lld”,&binary);
+	
+	While(binary>0){
+	Digit=binary%10;
+	Decimal = decimal+binary*base;
+	Base=base*2;
+	Binary=binary/10;
+}
+Printf(“Decimal Number :%d”,decimal);
+Return 0;
+
+}
+
+
+
+
+
+
+
+
+octal to binary
+EXP 1.2
+
+#include <stdio.h>
+
+int main(){
+    int octal,digit;
+    int binary[100];
+    int i=0;
+    int j;
+
+    printf("Enter the Octal ");
+    scanf("%d",&octal);
+        
+    while(octal>0){
+        digit=octal%10;
+
+        switch(digit)
+        {
+            case 0:
+            binary[i++]=0;
+            binary[i++]=0;
+            binary[i++]=0;
+            break;
+
+            case 1:
+            binary[i++]=0;
+            binary[i++]=0;
+            binary[i++]=1;
+            break;
+
+            case 2:
+            binary[i++]=0;
+            binary[i++]=1;
+            binary[i++]=0;
+            break;
+
+            case 3:
+            binary[i++]=0;
+            binary[i++]=1;
+            binary[i++]=1;
+            break;
+
+            case 4:
+            binary[i++]=1;
+            binary[i++]=0;
+            binary[i++]=0;
+            break;
+
+            case 5:
+            binary[i++]=1;
+            binary[i++]=0;
+            binary[i++]=1;
+            break;
+
+            case 6:
+            binary[i++]=1;
+            binary[i++]=1;
+            binary[i++]=0;
+            break;
+
+            case 7:
+            binary[i++]=1;
+            binary[i++]=1;
+            binary[i++]=1;
+            break;
+        }
+        octal=octal/10;
+    }
+
+    printf("binary=");
+    for (j=i-1;j>=0;j--)
+        printf("%d",binary[j]);
+    return 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+addition of hexadecimal
+
+Exp 4.1
+#include <stdio.h>
+
+int main(){
+    int a, b, c, d;
+
+    printf("Enter first Number:");
+    scanf("%x",&a);
+
+    printf("Enter Second Number:");
+    scanf("%x",&b);
+
+    c=a+b;
+    printf("Addition :%x\n",c);
+
+    d=a-b;
+    printf("Subtraction :%x",d);
+
+    return 0;
+    
+}
+
+
+
+
+
+
+
+
+addition of binary
+
+Exp 4.2
+#include <stdio.h>
+
+int main(){
+    char bin1[32], bin2[32];
+    int a=0,b=0,sum,diff,i;
+
+    printf("Enter the First Binary:");
+    scanf("%s",&bin1);
+
+    printf("Enter the Second Binary: ");
+    scanf("%s",&bin2);
+
+    for(i=0; bin1[i] != '\0'; i++){
+        a=a*2+(bin1[i]-'0');
+    }
+    for (i=0;bin2[i] !='\0'; i++){
+        b=b*2+(bin2[i]-'0');
+    }
+
+    sum=a+b;
+    diff=a-b;
+
+    printf("Addition :%d\n",sum);
+    printf("Subtrcation :%d",diff);
+
+    return 0;
+}
+
+
+basic programs ALU
+EXP 7
+Addition:-
+A: DB 0x03
+B: DB 0x05
+C: DB 0x00
+
+start:
+MOV AX, word A
+MOV BX, word B
+CLC
+ADD AX,BX
+MOV DI,OFFSET C
+MOV word [DI], AX
+
+Subtraction
+
+A: DB 0x05
+B: DB 0x02
+C: DB 0x00
+
+start:
+MOV AX, word A
+MOV BX, word B
+SUB AX,BX
+MOV DI, OFFSET C
+MOV word[DI], AX
+
+
+
+
+
+MULTIPLICATION 
+
+A: DB 0x05
+B: DB 0x02
+C: DB 0x00
+
+start:
+MOV AX, word A
+MOV BX, word B
+MUL BX
+MOV DI, OFFSET C
+MOV word[DI], AX
+
+DIVISION:
+
+A: DB 0x08
+B: DB 0x03
+C: DB 0x00
+D: DB 0x00
+
+start:
+MOV AX, word A
+MOV BX, word B
+MOV DX, word D
+DIV AX,BX
+MOV DI, OFFSET C
+MOV word[DI], AX
+MOV DI, OFFSET D
+MOV word[DI],DX 
+
+
+
+Largest and smallest 
+EXP 8 
+
+DATA: 	DW 0
+           	DW 1
+	DW 15
+	DW 6
+DW 13
+LARGEST: DW 00
+SMALLEST: DW 00
+
+start:
+	MOV SI, OFFSET DATA
+	MOV AX, word[SI]
+	MOV CX,4 
+	MOV BX, AX
+	MOV DX, AX
+
+NEXT:
+	ADD SI, 2
+	MOV AX, word[SI]
+	CMP AX,BX
+	JBE CHECK_SMALL
+	MOV BX,AX
+
+CHECK_SMALL:
+	CMP AX,DX
+	JAE CONTINUE
+	MOV DX,AX
+
+CONTINUE:
+	LOOP NEXT
+
+MOV DI, OFFSET LARGEST
+MOV word[DI], BX
+
+MOV DI, OFFSET SMALLEST 
+MOV word[DI], DX
+
+
+
+
+
+
+Pipepline phase
+
+Exp 10
+
+#include <stdio.h>
+
+int main (){
+	int i,cycle,n,stage;
+	char *stages[]	={
+		“FETCH”,
+		“DECODE”,
+		“EXCUTE”,
+		“MEMORY”,
+		“WRITE BACK”
+	}
+
+printf(“Enter the Number of Instruction:”);
+scanf(“%d”,&n);
+
+for(cycle = 1; cycle<=n+4; cycle++){
+	printf(“/n Clock Cycle : %d\n “, cycle);
+		for(i = 0; i < n; i++){
+			stage=cycle-i-1;
+				if (stage >= 0 && stage < 5){
+					printf(“instruction is : %d  %s\n “, i+1, stages[stage]);
+				}
+			}
+		}
+return 0;
+} 
+
+
+signed and unsigned numbers 
+#include <stdio.h>
+
+int main(){
+    int n,bits,i;
+    unsigned int binary,ones,twos;
+
+    printf("Enter the Number :");
+    scanf("%d",&n);
+
+    printf("Enter the Number of Bits:");
+    scanf("%d",&bits);
+
+    binary=(unsigned int)n & ((1U<<bits)-1);
+    printf("Binary: ");
+    for(i=bits-1;i>=0;i--){
+        printf("%d",(binary>>i)&1);
+    }
+
+    ones=(~binary) & ((1U<<bits)-1);
+    printf("\nOnes: ");
+    for(i=bits-1;i>=0;i--){
+        printf("%d",(ones>>i)&1);
+    }
+
+    twos=(ones+1) & ((1U<<bits)-1);
+    printf("\ntwos: ");
+    for(i=bits-1;i>=0;i--){
+        printf("%d",(twos>>i)&1);
+    }
+
+    return 0;
+}#include <stdio.h>
+
+int main(){
+    int n,bits,i;
+    unsigned int binary,ones,twos;
+
+    printf("Enter the Number :");
+    scanf("%d",&n);
+
+    printf("Enter the Number of Bits:");
+    scanf("%d",&bits);
+
+    binary=(unsigned int)n & ((1U<<bits)-1);
+    printf("Binary: ");
+    for(i=bits-1;i>=0;i--){
+        printf("%d",(binary>>i)&1);
+    }
+
+    ones=(~binary) & ((1U<<bits)-1);
+    printf("\nOnes: ");
+    for(i=bits-1;i>=0;i--){
+        printf("%d",(ones>>i)&1);
+    }
+
+    twos=(ones+1) & ((1U<<bits)-1);
+    printf("\ntwos: ");
+    for(i=bits-1;i>=0;i--){
+        printf("%d",(twos>>i)&1);
+    }
+
+    return 0;
+}
+
+
+
