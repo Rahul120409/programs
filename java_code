@@ -1,0 +1,712 @@
+uses of class and object exp 1.1 😊😊😊😊😊😊
+
+
+class Student{
+    String name;
+    int age;
+    String email;
+    long contact;
+
+    Student(String name, int age, String email, long contact){
+        this.name=name;
+        this.age=age;
+        this.email=email;
+        this.contact=contact;
+    }
+
+    void display(){
+        System.out.println("Name:"+name);
+        System.out.println("Email:"+email);
+        System.out.println("Age:"+age);
+        System.out.println("Contact:"+contact);
+    }
+}
+
+public class Main{
+    public static void main(String[] args){
+        Student s1=new Student("Rahul", 18, "test@gmail.com", 98769543210L);
+        Student s2=new Student("Ravi", 15, "test1@gmail.com", 6547891230L);
+        Student s3=new Student("janhvi", 19, "test2@gmail.com", 9632587410L);
+
+        System.out.println("Stundet 1 Details :");
+        s1.display();
+
+        System.out.println("\nStundet 2 Details :");
+        s2.display();
+
+        System.out.println("\nStundet 3 Details :");
+        s3.display();
+             
+    }
+}
+
+
+
+bank account balance code 😊😊😊😊😊😊
+
+class BankAccount{
+  String name;
+  private double balance;
+
+  public void setName(String name){
+    this.name=name;
+  }
+
+  public String getName(){
+    return name;
+  }
+
+  public void setBalance(double balance){
+    this.balance=balance;
+  }
+
+  public double getBalance(){
+    return balance;
+  }
+}
+
+class Exp1_2{
+  public static void main (String [] args){
+    BankAccount b1= new BankAccount();
+    b1.setName("Rahul");
+    b1.setBalance(1234.98);
+
+    System.out.println("Name:"+b1.getName());
+    System.out.println("Balance:"+b1.getBalance());
+  }
+}
+
+
+
+Program of construtor overloading 😊😊😊😊😊😊
+Exp2_1
+
+
+class Student{
+  String name;
+  int age;
+  String course;
+
+  Student(String name){
+    this.name=name;
+    this.course="Not enrolled";
+  }
+
+  Student(String name, int age){
+    this.name=name;
+    this.age=age;
+    this.course="Not enrolled";
+  }
+
+  Student(String name, int age, String course){
+    this.name=name;
+    this.age=age;
+    this.course=course;
+  }
+
+  void display(){
+    System.out.println("Name: "+name);
+    System.out.println("Age: "+age);
+    System.out.println("Course: "+course);
+  }
+}
+
+class Exp2_1{
+  public static void main (String []args){
+    Student s1 = new Student("Rahul");
+    Student s2 = new Student("Ravi",15);
+    Student s3 = new Student("test",13,"Computer Engineering");
+
+    s1.display();
+    s2.display();
+    s3.display();
+  }
+}
+
+
+progarm to calculate Area using method overloading 😊😊😊😊😊😊
+Exp 2-2
+
+  class Shape{
+    double calculateArea(double radius){
+      return 3.14*radius*radius;
+    }
+
+    double calculateArea(double length, double breadth){
+      return length*breadth;
+    }
+
+    double calculateArea(float base, float height){
+      return 0.5*base*height;
+    }
+
+    double calculateArea(int side){
+      return side*side;
+    }
+  }
+
+class Exp2_2{
+  public static void main(String [] args){
+    Shape s1 = new Shape();
+
+    System.out.println("Circle Area : "+s1.calculateArea(12.00));
+    System.out.println("Reactangle Area : "+s1.calculateArea(12,15));
+    System.out.println("Traingle Area : "+s1.calculateArea(12F,15F));
+    System.out.println("Sqaure Area : "+s1.calculateArea(12));
+    
+  }
+}
+
+
+
+Multilevel inheritence  😊😊😊😊😊😊
+3_1
+
+class Person {
+ String name;
+ int age;
+ public Person(String name, int age) {
+ this.name = name;
+ this.age = age;
+ }
+}
+class Student extends Person {
+ int rollNo;
+ public Student(String name, int age, int rollNo) {
+ super(name, age);
+ this.rollNo = rollNo;
+ }
+}
+class GraduateStudent extends Student {
+ String thesis;
+ public GraduateStudent(String name, int age, int rollNo, String thesis) {
+ super(name, age, rollNo);
+ this.thesis =thesis}
+}
+class Teacher extends Person {
+ String subject;
+ public Teacher(String name, int age, String subject) {
+ super(name, age);
+ this.subject = subject;
+ }
+}
+public class Exp3_1 {
+ public static void main(String[] args) {
+ Student s = new Student("Rahul", 19, 76);
+ System.out.println("Student: " + s.name + ", Age: " + s.age + ", Roll No: " + s.rollNo);
+ GraduateStudent g = new GraduateStudent("prapti", 18, 75, "AI");
+ System.out.println("Graduate Student: " + g.name + ", Age: " + g.age + ", Thesis: " +
+g.thesis);
+ Teacher t = new Teacher("brinal colaco", 30, "Java");
+ System.out.println("Teacher: " + t.name + ", Subject: " + t.subject);
+ }
+}
+
+
+
+
+Hospital Management System using interface 😊😊😊😊😊😊
+3.2
+interface AdministrativeDuties {
+ void manageSchedule();
+ void fillReports();
+}
+interface MedicalDuties {
+ void diagnosePatient();
+ void prescribeMedicine();
+}
+class DoctorAdministrator implements AdministrativeDuties, MedicalDuties {
+ String name;
+ int doctorId;
+ DoctorAdministrator(String name, int doctorId) {
+ this.name = name;
+ this.doctorId = doctorId;
+ }
+ public void manageSchedule() {
+ System.out.println("Managing doctor schedule");
+ }
+ public void fillReports() {
+ System.out.println("Filling hospital reports");
+ }
+ public void diagnosePatient() {
+System.out.println("Diagnosing patient");
+ }
+ public void prescribeMedicine() {
+ System.out.println("Prescribing medicine");
+ }
+ void showDetails() {
+ System.out.println("Doctor Name: " + name);
+ System.out.println("Doctor ID: " + doctorId);
+ }
+ public static void main(String[] args) {
+ DoctorAdministrator d = new DoctorAdministrator("Rahul", 101);
+ d.showDetails();
+ d.manageSchedule();
+ d.fillReports();
+ d.diagnosePatient();
+ d.prescribeMedicine();
+ }
+}
+
+
+Student marks 😊😊😊😊😊😊
+exp3-3
+
+import java.util.Scanner;
+class Student {
+ int total = 0;
+ double average;
+ void calculateGrade() {
+ average = total / 5.0;
+ System.out.println("Total Marks: " + total);
+ System.out.println("Average Marks: " + average);
+ if (average >= 90)
+ System.out.println("Grade A");
+ else if (average >= 75)
+ System.out.println("Grade B");
+ else if (average >= 50)
+ System.out.println("Grade C");
+ else if (average >= 35)
+ System.out.println("Grade D");
+ else
+ System.out.println("Fail");
+ }
+}
+class StudentResult extends Student {
+ void getMarks() {
+ Scanner sc = new Scanner(System.in); 
+for (int i = 1; i <= 5; i++) {
+ while (true) {
+ try {
+ System.out.print("Enter marks for subject " + i + ": ");
+ int marks = sc.nextInt();
+ if (marks < 0 || marks > 100)
+ throw new Exception();
+ total += marks;
+ break;
+ } catch (Exception e) {
+ System.out.println("Invalid marks! Enter between 0 and 100.");
+ sc.nextLine();
+ }
+ }
+ }
+ calculateGrade();
+ sc.close();
+ }
+ public static void main(String[] args) {
+ StudentResult s = new StudentResult();
+ s.getMarks();
+ }
+}
+
+
+
+
+Static website code 😊😊😊😊😊😊
+HTML
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My College Website</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>My College</h1>
+        <p>Welcome to our college website</p>
+    </header>
+
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#courses">Courses</a>
+        <a href="#contact">Contact</a>
+    </nav>
+
+    <section id="home">
+        <h2>Home</h2>
+        <p>Welcome to My College. Learn and build your future with us.</p>
+        <button onclick="showMessage()">Click Me</button>
+        <p id="message"></p>
+    </section>
+
+    <section id="about">
+        <h2>About Us</h2>
+        <p>Our college provides quality education and practical knowledge.</p>
+    </section>
+
+    <section id="courses">
+        <h2>Our Courses</h2>
+        <ul>
+            <li>Computer Engineering</li>
+            <li>Information Technology</li>
+            <li>Mechanical Engineering</li>
+            <li>Electrical Engineering</li>
+        </ul>
+    </section>
+
+    <section id="contact">
+        <h2>Contact Us</h2>
+        <p>Email: info@mycollege.com</p>
+        <p>Phone: 9876543210</p>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 My College. All Rights Reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
+
+style.css
+
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    background-color: #f2f2f2;
+}
+
+header {
+    background-color: navy;
+    color: white;
+    text-align: center;
+    padding: 20px;
+}
+
+nav {
+    background-color: black;
+    padding: 15px;
+    text-align: center;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin: 15px;
+}
+
+section {
+    background-color: white;
+    margin: 20px;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+h2 {
+    color: navy;
+}
+
+button {
+    background-color: navy;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: blue;
+}
+
+footer {
+    background-color: navy;
+    color: white;
+    text-align: center;
+    padding: 10px;
+}
+
+
+scrpit.js
+
+
+function showMessage() {
+    document.getElementById("message").innerHTML =
+        "Welcome to My College Website!";
+}
+
+
+program to valide the email entered by the user 😊😊😊😊😊😊
+index.html
+<!DOCTYPE html>
+<html>
+<head>
+ <title>Form Validation</title>
+ <link rel="stylesheet" href="style.css">
+</head>
+<body>
+ <h2>Email and Mobile Validation</h2>
+ <form onsubmit="return validateForm()">
+ <label>Email:</label>
+ <input type="text" id="email" required>
+ <label>Mobile Number:</label>
+ <input type="text" id="mobile" maxlength="10" required>
+ <button type="submit">Submit</button>
+ </form>
+ <script src="script.js"></script>
+</body>
+</html>
+
+style.ccc
+body {
+ font-family: Arial, sans-serif;
+ text-align: center;
+ background-color: #f2f2f2;
+}
+form {
+ width: 300px;
+ margin: auto;
+}
+label {
+ display: block;
+ margin-top: 15px;
+}
+input {
+ width: 100%;
+ padding: 8px;
+ margin-top: 5px;
+ box-sizing: border-box;
+}
+button {
+ margin-top: 20px;
+ padding: 10px 20px;
+ cursor: pointer;
+}
+
+script.js
+
+function validateForm() {
+ var email = document.getElementById("email").value;
+ var mobile = document.getElementById("mobile").value;
+ if (email.indexOf("@") == -1 || email.indexOf(".") == -1) {
+ alert("Invalid email! Enter @ and .");
+ document.getElementById("email").focus();
+ return false;
+ }
+ if (!/^\d{10}$/.test(mobile)) {
+ alert("Mobile number must contain 10 digits");
+ document.getElementById("mobile").focus()
+return false;
+ }
+ alert("Email and mobile number are valid!");
+ return false;
+} 
+
+
+chnage the color after few seconds 😊😊😊😊😊😊
+<!DOCTYPE html>
+<html>
+<head>
+ <title>Background Color Changer</title>
+ <style>
+ body {
+ font-family: Arial, sans-serif;
+ height: 100vh;
+ margin: 0;
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ text-align: center;
+ background-color: lightblue;
+ transition: background-color 0.5s;
+ }
+ .box {
+ background: white;
+ padding: 30px;
+ border-radius: 15px;
+ box-shadow: 0 4px 15px #999;
+ }
+ h1 {
+ color: #333;
+ }
+ #colorName {
+ font-size: 24px;
+ color: #4f46e5; 
+}
+ </style>
+</head>
+<body>
+ <div class="box">
+ <h1>Background Color Changer</h1>
+ <p>Background changes every 5 seconds</p>
+ <p>Current Color:</p>
+ <p id="colorName">Light Blue</p>
+ </div>
+ <script>
+ const colors = [
+ { name: "Light Blue", value: "lightblue" },
+ { name: "Light Green", value: "lightgreen" },
+ { name: "Light Pink", value: "lightpink" },
+ { name: "Light Yellow", value: "lightyellow" },
+ { name: "Light Gray", value: "lightgray" }
+ ];
+ let index = 0;
+ function changeColor() {
+ index = (index + 1) % colors.length;
+ document.body.style.backgroundColor = colors[index].value;
+ document.getElementById("colorName").textContent =
+ colors[index].name;
+ }
+ setInterval(changeColor, 5000);
+ </script>
+</body>
+</html>
+
+
+
+Program to Implement Java Script Animation 😊😊😊😊😊😊
+
+<!DOCTYPE html>
+<html>
+<head>
+ <title>Text Animation</title>
+ <style>
+ body {
+ font-family: Arial, sans-serif;
+ background: linear-gradient(120deg, #dbeafe, #ede9fe);
+ height: 100vh;
+ margin: 0;
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ }
+ .container {
+ background: white;
+ padding: 40px;
+ text-align: center;
+ border-radius: 15px;
+ box-shadow: 0 5px 15px #aaa;
+ width: 350px;
+ }
+h1 {
+ color: #4338ca;
+ }
+ #text {
+ color: #0891b2;
+ font-size: 22px;
+ font-weight: bold;
+ min-height: 30px;
+ margin: 25px 0;
+ }
+ button {
+ background: #4338ca;
+ color: white;
+ padding: 10px 20px;
+ border: none;
+ border-radius: 6px;
+ cursor: pointer;
+ }
+ button:hover {
+ background: #312e81;
+ }
+ </style>
+</head>
+<body>
+ <div class="container">
+ <h1>LearnTech</h1>
+ <p>Welcome to the Student Learning Portal</p>
+ <p id="text"></p>
+ <button onclick="animateText()">Replay Animation</button>
+ </div>
+ <script>
+var message = "Learn Today, Lead Tomorrow!";
+ var i = 0;
+ var timer;
+ function animateText() {
+ clearInterval(timer);
+ i = 0;
+ document.getElementById("text").textContent = "";
+ timer = setInterval(function() {
+ if (i < message.length) {
+ document.getElementById("text").textContent += message.charAt(i);
+ i++;
+ } else {
+ clearInterval(timer);
+ }
+ }, 100);
+ }
+ animateText();
+ </script>
+</body>
+</html>
+
+
+react hook 😊😊😊😊😊😊
+
+app.tsx
+
+import { useState } from "react";
+function App() {
+ const [color, setColor] = useState("");
+ return (
+ <div style={{ textAlign: "center", marginTop: "50px" }}>
+ <h2>Choose a Color</h2>
+ <button onClick={() => setColor("Red")}>Red</button>{" "} 
+<button onClick={() => setColor("Blue")}>Blue</button>{" "}
+ <button onClick={() => setColor("Green")}>Green</button>{" "}
+ <button onClick={() => setColor("Yellow")}>Yellow</button>
+ {color && (
+ <h3 style={{ color: color }}>
+ You have selected {color} color
+ </h3>
+ )}
+ </div>
+ );
+} 
+
+
+
+Rest api using springboot 😊😊😊😊😊😊
+
+Student.java
+package com.exp10._0;
+public record Student(int id, String name) {
+}
+
+StudentController.java
+package com.exp10._0;
+import java.util.ArrayList;
+import java.util.List;
+import org.springframework.web.bind.annotation.*; 
+@RestController
+@RequestMapping("/students")
+public class StudentController {
+ List<Student> students = new ArrayList<>();
+ public StudentController() {
+ students.add(new Student(1, "Rahul"));
+ students.add(new Student(2, "abc"));
+ }
+ @GetMapping
+ public List<Student> getAll() {
+ return students;
+ }
+ @GetMapping("/{id}")
+ public Student getById(@PathVariable int id) {
+ for (Student s : students) {
+ if (s.id() == id) {
+ return s;
+ }
+}
+ return null;
+ }
+ @PostMapping
+ public Student add(@RequestBody Student student) {
+ students.add(student);
+ return student;
+ }
+ @PutMapping("/{id}")
+ public Student update(@PathVariable int id, @RequestBody Student updated) {
+ students.removeIf(s -> s.id() == id);
+ students.add(updated);
+ return updated;
+ }
+ @DeleteMapping("/{id}")
+ public String delete(@PathVariable int id) {
+ students.removeIf(s -> s.id() == id);
+ return "Student " + id + " deleted";
+ }
+}😊😊😊😊😊😊
+
